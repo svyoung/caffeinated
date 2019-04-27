@@ -8,11 +8,19 @@
     <title>Caffeinated</title>
 
     <link href="{{mix('css/app.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{mix('css/main.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('css/main.css')}}" rel="stylesheet" type="text/css">
+
+    <link href="{{asset('css/jquery-ui.min.css')}}" rel="stylesheet" type="text/css">
 </head>
 <body>
-<h2 style="text-align: center"> Caffeinated </h2>
+<h2 style="text-align: center"> Welcome to Caffeinated, David! </h2>
 <div id="root"></div>
 <script src="{{mix('js/app.js')}}" ></script>
+<script src="{{asset('js/jquery-ui.min.js')}}" ></script>
+<script>
+        $( "#chart" ).draggable({
+            handle: 'h1'
+        });
+</script>
 </body>
 </html>

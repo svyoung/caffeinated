@@ -15,7 +15,7 @@ class CaffeinatedController extends Controller
         return view('index');
     }
 
-    function getDrinks() {
+    function drinks() {
         $query = DB::table('drinks')
             ->get();
         $query = json_decode(json_encode($query), true);

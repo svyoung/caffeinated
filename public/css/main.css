@@ -1,5 +1,114 @@
+body {
+    background: #ffffff;
+}
+.container > h1 {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #a1a1a1;
+    line-height: 0.1em;
+    margin: 37px 0;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    color: #414141;
+}
+.container > h1 span {
+    background:#fff;
+    padding:0 10px;
+}
+article {
+    display: inline-block;
+    text-align: center;
+    width: 30%;
+    padding: 20px 0;
+    box-shadow: 0 0 11px #cccccc;
+    margin: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
 article.disabled {
-    color: #cccccc;;
-    pointer-events: none;
     cursor: not-allowed;
+    opacity: .3;
+}
+article .drink-image {
+    width: 130px;
+    height: 200px;
+    margin: 0 auto;
+}
+article .drink-image.mus {
+    background-image: url(/img/mus.png);
+    background-size: 78% 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+article .drink-image.bc {
+    background-image: url(/img/bc.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+article .drink-image.am {
+    background-image: url(/img/am.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 255px;
+}
+article .drink-image.sfn {
+    background-image: url(/img/sfn.png);
+    background-size: 78% 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+article .drink-image.fh {
+    background-image: url(/img/fh.png);
+    background-size: 78% 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 160px;
+}
+article .drink-image.cf {
+    background-image: url(/img/cf.png);
+    background-size: 78% 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 150px;
+}
+article h2 {
+    font-size: 18px;
+    margin: 15px 0;
+}
+article button {
+    padding: 8px 10px;
+    border: 0;
+    border-radius: 10px;
+    background: #484848;
+    color: white;
+    text-transform: uppercase;
+    font-size: .9em;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+article button:hover {
+    background: #000;
+}
+article.disabled button {
+    pointer-events: none;
+}
+#chart {
+    position:absolute;
+    top: 80%;
+    right: 2%;
+    background: #ffffff;
+    border: 3px solid #d2d2d2;
+    width: 30%;
+}
+#chart h1 {
+    padding: 10px;
+    background: #cccccc;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: move;
+}
+#chart .content {
+    padding: 10px;
 }

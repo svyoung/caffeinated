@@ -61632,9 +61632,22 @@ function (_Component) {
   _createClass(Chart, [{
     key: "render",
     value: function render() {
+      var _this = this;
+
+      var _this$props = this.props,
+          drinks = _this$props.drinks,
+          selectedDrink = _this$props.selectedDrink;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "chart"
-      }, "MG: ", this.props.mg);
+        id: "chart"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Chart"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "content"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "cart"
+      }, selectedDrink.name, drinks.map(function (drink) {
+        _this.props.selectedDrink.name; // {if(drink.id === selectedDrink.id) {
+        //     selectedDrink.name
+        // }}
+      })), "You have ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, this.props.mg, "mg"), " of caffeine left. ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Number of disabled drinks: ", this.props.disabled));
     }
   }]);
 
@@ -61698,7 +61711,9 @@ function (_Component) {
         "data-mg": drinkData.mg,
         "data-alias": drinkData.alias,
         disabled: drinkData.disabled
-      }, drinkData.name, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: 'drink-image ' + drinkData.alias
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, drinkData.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "button",
         onClick: function onClick() {
           return _this.props.submitDrink(drinkData);
@@ -61768,9 +61783,13 @@ function (_Component) {
     _this.state = {
       drinks: [],
       maxMg: 500,
-      selected: ''
+      selected: '',
+      qty: '',
+      percentage: 100,
+      disabled: 0
     };
     _this.submitDrink = _this.submitDrink.bind(_assertThisInitialized(_this));
+    _this.qtyChange = _this.qtyChange.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -61786,7 +61805,6 @@ function (_Component) {
       }).then(function (response) {
         return response.json();
       }).then(function (data) {
-        console.log(data);
         that.setState({
           drinks: data
         });
@@ -61795,15 +61813,26 @@ function (_Component) {
   }, {
     key: "submitDrink",
     value: function submitDrink(drink) {
-      var mg = this.state.maxMg,
-          that = this,
-          newMG = mg - drink.mg;
-      console.log('mg: ' + this.state.maxMg);
-      this.setState({
-        maxMg: that.state.maxMg - drink.mg
+      var disabled = 0,
+          mg = this.state.maxMg - drink.mg;
+      this.state.drinks.map(function (drink) {
+        if (drink.mg > mg) {
+          disabled += 1;
+        }
       });
-      console.log('selected: ' + drink.mg);
-      console.log('mgs left: ' + this.state.maxMg);
+      this.setState({
+        maxMg: mg,
+        disabled: disabled,
+        selected: drink
+      });
+    }
+  }, {
+    key: "qtyChange",
+    value: function qtyChange(e) {
+      this.setState({
+        qty: e.target.value
+      });
+      console.log('changing!' + this.state.qty);
     }
   }, {
     key: "render",
@@ -61813,15 +61842,21 @@ function (_Component) {
       var drinks = this.state.drinks;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "All Products"), drinks.map(function (drink) {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Menu")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "menu"
+      }, drinks.map(function (drink) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Drink__WEBPACK_IMPORTED_MODULE_2__["default"], {
           key: drink.id,
           mg: _this2.state.maxMg,
           drinkData: drink,
-          submitDrink: _this2.submitDrink
+          submitDrink: _this2.submitDrink,
+          onChange: _this2.onChange
         });
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Chart__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        mg: this.state.maxMg
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Chart__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        mg: this.state.maxMg,
+        disabled: this.state.disabled,
+        drinks: this.state.drinks,
+        selectedDrink: this.state.selected
       }));
     }
   }]);

@@ -11,10 +11,14 @@ class Main extends Component {
         this.state = {
             drinks: [],
             maxMg: 500,
-            selected: ''
+            selected: '',
+            qty: '',
+            percentage: 100,
+            disabled: 0
         };
 
         this.submitDrink = this.submitDrink.bind(this);
+        this.qtyChange = this.qtyChange.bind(this);
     }
 
     componentDidMount() {
@@ -25,36 +29,39 @@ class Main extends Component {
                 'Accept': 'application/json'
             }
         })
-            .then(function(response) {
-                return response.json();
-            })
-            .then(function(data) {
-                console.log(data);
-                that.setState( { drinks: data });
-            })
+            .then(response => response.json())
+            .then(data => {that.setState( { drinks: data });}
+            )
     }
 
     submitDrink(drink) {
-        let mg = this.state.maxMg, that = this, newMG = mg - drink.mg;
-        console.log('mg: ' + this.state.maxMg);
-        this.setState({
-            maxMg: (that.state.maxMg - drink.mg)
-        });
+        let disabled = 0, mg = this.state.maxMg - drink.mg;
+        this.state.drinks.map(drink => {
+                if(drink.mg > mg) {
+                    disabled += 1;
+                }
+            }
+        );
+        this.setState({maxMg: mg, disabled: disabled, selected: drink});
+    }
 
-        console.log('selected: ' + drink.mg);
-        console.log('mgs left: ' + this.state.maxMg);
-
+    qtyChange(e) {
+        this.setState({ qty: e.target.value});
+        console.log('changing!' + this.state.qty);
     }
 
     render() {
         const { drinks } = this.state;
         return (
             <div className='container'>
-                <h3>All Products</h3>
-        {drinks.map(drink =>
-            <Drink key={drink.id} mg={this.state.maxMg} drinkData={drink} submitDrink={this.submitDrink} />
-        )}
-            <Chart mg={this.state.maxMg} />
+                <h1><span>Menu</span></h1>
+                <div className='menu'>
+                    {drinks.map(drink =>
+                        <Drink key={drink.id} mg={this.state.maxMg} drinkData={drink} submitDrink={this.submitDrink} onChange={this.onChange} />
+                    )}
+                </div>
+
+                <Chart mg={this.state.maxMg} disabled={this.state.disabled} drinks={this.state.drinks} selectedDrink={this.state.selected} />
             </div>
     );
     }

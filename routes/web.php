@@ -12,4 +12,4 @@
 */
 
 Route::get('/', 'CaffeinatedController@index');
-Route::get('/drinks', 'CaffeinatedController@getDrinks');
+Route::get('/drinks', 'CaffeinatedController@drinks');
