@@ -61632,19 +61632,10 @@ function (_Component) {
   _createClass(Chart, [{
     key: "render",
     value: function render() {
-      var _this$props = this.props,
-          drinks = _this$props.drinks,
-          selectedDrink = _this$props.selectedDrink,
-          inventory = _this$props.inventory;
+      var inventory = this.props.inventory;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "chart"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Chart"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "inventory"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, inventory.map(function (inv) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          key: inv.id
-        }, inv.name);
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "content"
       }, "You have ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, this.props.mg, "mg"), " of caffeine left."));
     }
@@ -61712,7 +61703,17 @@ function (_Component) {
         disabled: drinkData.disabled
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: 'drink-image ' + drinkData.alias
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, drinkData.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, drinkData.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, drinkData.mg, "mg"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "qty"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Qty: "), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        pattern: "[1-9]*",
+        "data-alias": drinkData.alias,
+        value: this.props.qty,
+        onChange: function onChange(e) {
+          return _this.props.onChange(e, drinkData.id);
+        }
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "button",
         onClick: function onClick() {
           return _this.props.submitDrink(drinkData);
@@ -61782,13 +61783,13 @@ function (_Component) {
     _this.state = {
       drinks: [],
       maxMg: 500,
-      selected: '',
-      percentage: 100,
       maxedOut: false,
       disabled: 0,
-      inventory: []
+      qty: [1, 1, 1, 1, 1, 1],
+      warning: false
     };
     _this.submitDrink = _this.submitDrink.bind(_assertThisInitialized(_this));
+    _this.onQty = _this.onQty.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -61813,8 +61814,8 @@ function (_Component) {
     key: "submitDrink",
     value: function submitDrink(drink) {
       var disabled = 0,
-          mg = this.state.maxMg - drink.mg,
-          inv = this.state.inventory.concat(drink);
+          qty = this.state.qty[drink.id - 1],
+          mg = this.state.maxMg - drink.mg * qty;
       this.state.drinks.map(function (drink) {
         if (drink.mg > mg) {
           disabled += 1;
@@ -61827,20 +61828,41 @@ function (_Component) {
         });
       }
 
+      if (mg < 0) mg = 0;
       this.setState({
         maxMg: mg,
         disabled: disabled,
-        selected: drink,
-        inventory: inv
+        selected: drink
       });
-      this.setState({
-        inventory: inv
-      });
+    }
+  }, {
+    key: "onQty",
+    value: function onQty(e, id) {
+      var _this2 = this;
+
+      console.log('on change! ' + id);
+
+      if (isNaN(e.target.value)) {
+        this.setState({
+          warning: true
+        });
+        setTimeout(function () {
+          _this2.setState({
+            warning: false
+          });
+        }, 2000);
+      } else {
+        var newQty = this.state.qty;
+        newQty[id - 1] = e.target.value;
+        this.setState({
+          qty: newQty
+        });
+      }
     }
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       var drinks = this.state.drinks;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -61850,9 +61872,11 @@ function (_Component) {
       }, drinks.map(function (drink) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Drink__WEBPACK_IMPORTED_MODULE_2__["default"], {
           key: drink.id,
-          mg: _this2.state.maxMg,
+          mg: _this3.state.maxMg,
           drinkData: drink,
-          submitDrink: _this2.submitDrink
+          onChange: _this3.onQty,
+          submitDrink: _this3.submitDrink,
+          qty: _this3.state.qty[drink.id - 1]
         });
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Chart__WEBPACK_IMPORTED_MODULE_3__["default"], {
         mg: this.state.maxMg,
@@ -61862,7 +61886,9 @@ function (_Component) {
         selectedDrink: this.state.selected
       }), this.state.maxedOut ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "maxedout-msg"
-      }, "Sorry, you're all maxed out on your daily limit of caffeine!") : null);
+      }, "Sorry, you're all maxed out on your daily limit of caffeine!") : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: 'warning-nan ' + (this.state.warning ? 'warning' : '')
+      }, "Please enter a valid quantity number"));
     }
   }]);
 

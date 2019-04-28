@@ -1,5 +1,63 @@
+@-webkit-keyframes swing {
+    15% {
+        -webkit-transform: translateY(5px);
+        transform: translateY(5px);
+    }
+    30% {
+        -webkit-transform: translateY(-5px);
+        transform: translateY(-5px);
+    }
+    50% {
+        -webkit-transform: translateY(3px);
+        transform: translateY(3px);
+    }
+    65% {
+        -webkit-transform: translateY(-3px);
+        transform: translateY(-3px);
+    }
+    80% {
+        -webkit-transform: translateY(2px);
+        transform: translateY(2px);
+    }
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+}
+@keyframes swing {
+    15% {
+        -webkit-transform: translateY(5px);
+        transform: translateY(5px);
+    }
+    30% {
+        -webkit-transform: translateY(-5px);
+        transform: translateY(-5px);
+    }
+    50% {
+        -webkit-transform: translateY(3px);
+        transform: translateY(3px);
+    }
+    65% {
+        -webkit-transform: translateY(-3px);
+        transform: translateY(-3px);
+    }
+    80% {
+        -webkit-transform: translateY(2px);
+        transform: translateY(2px);
+    }
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+}
+
+
 body {
     background: #ffffff;
+}
+h2.welcome {
+    margin: 20px auto;
+    text-align: center;
 }
 .container > h1 {
     width: 100%;
@@ -24,6 +82,15 @@ article {
     margin: 10px;
     border-radius: 10px;
     cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: .8;
+}
+article:hover {
+    -webkit-animation: swing 1s ease;
+    animation: bounce 1s ease;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    opacity: 1;
 }
 article.disabled {
     cursor: not-allowed;
@@ -77,6 +144,24 @@ article h2 {
     font-size: 18px;
     margin: 15px 0;
 }
+article h3 {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 15px 0;
+}
+article .qty {
+    margin: 15px;
+}
+article .qty input {
+    width: 50px;
+    border: 1px solid #dfdfdf;
+    padding-left: 10px;
+    border-radius: 10px;
+    margin-left: 10px;
+}
+article .qty input:focus {
+    outline: 0;
+}
 article button {
     padding: 8px 10px;
     border: 0;
@@ -95,7 +180,7 @@ article.disabled button {
     pointer-events: none;
 }
 #chart {
-    position:absolute;
+    position:fixed;
     top: 80%;
     right: 2%;
     background: #ffffff;
@@ -111,12 +196,12 @@ article.disabled button {
     cursor: move;
 }
 #chart .content {
-    padding: 10px;
+    padding: 0 10px 10px 10px;
 }
 #chart .content strong {
     font-size: 1.5em;
 }
-.maxedout-msg {
+.maxedout-msg, .warning-nan {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -125,7 +210,13 @@ article.disabled button {
     border-radius: 10px;
     width: 400px;
     transform: translate(-50%, -50%);
-    font-size: 2em;
     text-align: center;
     padding: 10px;
+    transition: all .3s linear;
+}
+.warning-nan {
+    display: none;
+}
+.warning-nan.warning {
+    display: block;
 }

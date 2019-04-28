@@ -11,14 +11,14 @@ class Main extends Component {
         this.state = {
             drinks: [],
             maxMg: 500,
-            selected: '',
-            percentage: 100,
             maxedOut: false,
             disabled: 0,
-            inventory: []
+            qty: [1, 1, 1, 1, 1, 1],
+            warning: false
         };
 
         this.submitDrink = this.submitDrink.bind(this);
+        this.onQty = this.onQty.bind(this);
     }
 
     componentDidMount() {
@@ -30,12 +30,14 @@ class Main extends Component {
             }
         })
             .then(response => response.json())
-            .then(data => {that.setState( { drinks: data });}
-            )
+            .then(data => {that.setState( { drinks: data });})
     }
 
     submitDrink(drink) {
-        let disabled = 0, mg = this.state.maxMg - drink.mg, inv = this.state.inventory.concat(drink);
+        let disabled = 0,
+            qty = this.state.qty[drink.id - 1],
+            mg = this.state.maxMg - (drink.mg * qty);
+
         this.state.drinks.map(drink => {
                 if(drink.mg > mg) {
                     disabled += 1;
@@ -45,12 +47,26 @@ class Main extends Component {
         if(disabled === this.state.drinks.length) {
             this.setState({maxedOut: true});
         }
-        this.setState({maxMg: mg, disabled: disabled, selected: drink, inventory: inv});
-
-        this.setState({
-            inventory: inv
-        })
+        if(mg < 0 ) mg = 0;
+        this.setState({maxMg: mg, disabled: disabled, selected: drink});
     }
+
+    onQty(e, id) {
+        console.log('on change! ' + id);
+        if(isNaN(e.target.value)) {
+            this.setState({warning:true});
+            setTimeout(() => {
+                this.setState({
+                    warning: false
+                });
+            }, 2000);
+        } else {
+            let newQty = this.state.qty;
+            newQty[id - 1] = e.target.value;
+            this.setState({qty: newQty})
+        }
+    }
+
     render() {
         const { drinks } = this.state;
         return (
@@ -61,7 +77,9 @@ class Main extends Component {
                         <Drink key={drink.id}
                             mg={this.state.maxMg}
                             drinkData={drink}
-                            submitDrink={this.submitDrink} />
+                            onChange={this.onQty}
+                            submitDrink={this.submitDrink}
+                            qty={this.state.qty[drink.id - 1]} />
                     )}
                 </div>
                 <Chart mg={this.state.maxMg}
@@ -72,6 +90,7 @@ class Main extends Component {
                 {(this.state.maxedOut) ?
                     (<div className='maxedout-msg'>Sorry, you're all maxed out on your daily limit of caffeine!</div>) : null
                 }
+                <div className={'warning-nan ' + (this.state.warning ? 'warning' : '')}>Please enter a valid quantity number</div>
             </div>
     );
     }
