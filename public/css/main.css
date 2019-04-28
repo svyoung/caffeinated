@@ -100,15 +100,32 @@ article.disabled button {
     right: 2%;
     background: #ffffff;
     border: 3px solid #d2d2d2;
-    width: 30%;
+    width: 300px;
+    box-shadow: 0 1px 6px #6b6b6b;
 }
 #chart h1 {
-    padding: 10px;
+    padding: 5px 10px;
     background: #cccccc;
     font-size: 20px;
     font-weight: bold;
     cursor: move;
 }
 #chart .content {
+    padding: 10px;
+}
+#chart .content strong {
+    font-size: 1.5em;
+}
+.maxedout-msg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: #ffd1d1;
+    border: 1px solid red;
+    border-radius: 10px;
+    width: 400px;
+    transform: translate(-50%, -50%);
+    font-size: 2em;
+    text-align: center;
     padding: 10px;
 }

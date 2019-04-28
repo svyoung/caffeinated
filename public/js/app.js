@@ -61632,8 +61632,6 @@ function (_Component) {
   _createClass(Chart, [{
     key: "render",
     value: function render() {
-      var _this = this;
-
       var _this$props = this.props,
           drinks = _this$props.drinks,
           selectedDrink = _this$props.selectedDrink;
@@ -61641,13 +61639,7 @@ function (_Component) {
         id: "chart"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Chart"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "content"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "cart"
-      }, selectedDrink.name, drinks.map(function (drink) {
-        _this.props.selectedDrink.name; // {if(drink.id === selectedDrink.id) {
-        //     selectedDrink.name
-        // }}
-      })), "You have ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, this.props.mg, "mg"), " of caffeine left. ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Number of disabled drinks: ", this.props.disabled));
+      }, "You have ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, this.props.mg, "mg"), " of caffeine left."));
     }
   }]);
 
@@ -61786,10 +61778,10 @@ function (_Component) {
       selected: '',
       qty: '',
       percentage: 100,
+      maxedOut: false,
       disabled: 0
     };
     _this.submitDrink = _this.submitDrink.bind(_assertThisInitialized(_this));
-    _this.qtyChange = _this.qtyChange.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -61820,19 +61812,18 @@ function (_Component) {
           disabled += 1;
         }
       });
+
+      if (disabled === this.state.drinks.length) {
+        this.setState({
+          maxedOut: true
+        });
+      }
+
       this.setState({
         maxMg: mg,
         disabled: disabled,
         selected: drink
       });
-    }
-  }, {
-    key: "qtyChange",
-    value: function qtyChange(e) {
-      this.setState({
-        qty: e.target.value
-      });
-      console.log('changing!' + this.state.qty);
     }
   }, {
     key: "render",
@@ -61849,15 +61840,16 @@ function (_Component) {
           key: drink.id,
           mg: _this2.state.maxMg,
           drinkData: drink,
-          submitDrink: _this2.submitDrink,
-          onChange: _this2.onChange
+          submitDrink: _this2.submitDrink
         });
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Chart__WEBPACK_IMPORTED_MODULE_3__["default"], {
         mg: this.state.maxMg,
         disabled: this.state.disabled,
         drinks: this.state.drinks,
         selectedDrink: this.state.selected
-      }));
+      }), this.state.maxedOut ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "maxedout-msg"
+      }, "Sorry, you're all maxed out on your daily limit of caffeine!") : null);
     }
   }]);
 

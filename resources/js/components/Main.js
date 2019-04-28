@@ -14,11 +14,11 @@ class Main extends Component {
             selected: '',
             qty: '',
             percentage: 100,
+            maxedOut: false,
             disabled: 0
         };
 
         this.submitDrink = this.submitDrink.bind(this);
-        this.qtyChange = this.qtyChange.bind(this);
     }
 
     componentDidMount() {
@@ -42,14 +42,13 @@ class Main extends Component {
                 }
             }
         );
+        if(disabled === this.state.drinks.length) {
+            this.setState({maxedOut: true});
+        }
         this.setState({maxMg: mg, disabled: disabled, selected: drink});
-    }
 
-    qtyChange(e) {
-        this.setState({ qty: e.target.value});
-        console.log('changing!' + this.state.qty);
-    }
 
+    }
     render() {
         const { drinks } = this.state;
         return (
@@ -57,11 +56,19 @@ class Main extends Component {
                 <h1><span>Menu</span></h1>
                 <div className='menu'>
                     {drinks.map(drink =>
-                        <Drink key={drink.id} mg={this.state.maxMg} drinkData={drink} submitDrink={this.submitDrink} onChange={this.onChange} />
+                        <Drink key={drink.id}
+                            mg={this.state.maxMg}
+                            drinkData={drink}
+                            submitDrink={this.submitDrink} />
                     )}
                 </div>
-
-                <Chart mg={this.state.maxMg} disabled={this.state.disabled} drinks={this.state.drinks} selectedDrink={this.state.selected} />
+                <Chart mg={this.state.maxMg}
+                    disabled={this.state.disabled}
+                    drinks={this.state.drinks}
+                    selectedDrink={this.state.selected} />
+                {(this.state.maxedOut) ?
+                    (<div className='maxedout-msg'>Sorry, you're all maxed out on your daily limit of caffeine!</div>) : null
+                }
             </div>
     );
     }
