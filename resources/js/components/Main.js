@@ -84,9 +84,7 @@ class Main extends Component {
                 </div>
                 <Chart mg={this.state.maxMg}
                     disabled={this.state.disabled}
-                    inventory={this.state.inventory}
-                    drinks={this.state.drinks}
-                    selectedDrink={this.state.selected} />
+                    drinks={this.state.drinks} />
                 {(this.state.maxedOut) ?
                     (<div className='maxedout-msg'>Sorry, you're all maxed out on your daily limit of caffeine!</div>) : null
                 }

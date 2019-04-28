@@ -61881,9 +61881,7 @@ function (_Component) {
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Chart__WEBPACK_IMPORTED_MODULE_3__["default"], {
         mg: this.state.maxMg,
         disabled: this.state.disabled,
-        inventory: this.state.inventory,
-        drinks: this.state.drinks,
-        selectedDrink: this.state.selected
+        drinks: this.state.drinks
       }), this.state.maxedOut ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "maxedout-msg"
       }, "Sorry, you're all maxed out on your daily limit of caffeine!") : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
