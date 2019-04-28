@@ -61623,16 +61623,15 @@ var Chart =
 function (_Component) {
   _inherits(Chart, _Component);
 
-  function Chart(props) {
+  function Chart() {
     _classCallCheck(this, Chart);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Chart).call(this, props));
+    return _possibleConstructorReturn(this, _getPrototypeOf(Chart).apply(this, arguments));
   }
 
   _createClass(Chart, [{
     key: "render",
     value: function render() {
-      var inventory = this.props.inventory;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "chart"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Chart"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

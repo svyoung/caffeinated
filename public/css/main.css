@@ -173,6 +173,9 @@ article button {
     letter-spacing: 1px;
     font-weight: bold;
 }
+article button:focus {
+    outline: 0;
+}
 article button:hover {
     background: #000;
 }
