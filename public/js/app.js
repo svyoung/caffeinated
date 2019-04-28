@@ -61839,8 +61839,6 @@ function (_Component) {
     value: function onQty(e, id) {
       var _this2 = this;
 
-      console.log('on change! ' + id);
-
       if (isNaN(e.target.value)) {
         this.setState({
           warning: true
@@ -61878,9 +61876,7 @@ function (_Component) {
           qty: _this3.state.qty[drink.id - 1]
         });
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Chart__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        mg: this.state.maxMg,
-        disabled: this.state.disabled,
-        drinks: this.state.drinks
+        mg: this.state.maxMg
       }), this.state.maxedOut ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "maxedout-msg"
       }, "Sorry, you're all maxed out on your daily limit of caffeine!") : null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

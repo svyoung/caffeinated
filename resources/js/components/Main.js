@@ -52,7 +52,6 @@ class Main extends Component {
     }
 
     onQty(e, id) {
-        console.log('on change! ' + id);
         if(isNaN(e.target.value)) {
             this.setState({warning:true});
             setTimeout(() => {
@@ -82,9 +81,7 @@ class Main extends Component {
                             qty={this.state.qty[drink.id - 1]} />
                     )}
                 </div>
-                <Chart mg={this.state.maxMg}
-                    disabled={this.state.disabled}
-                    drinks={this.state.drinks} />
+                <Chart mg={this.state.maxMg} />
                 {(this.state.maxedOut) ?
                     (<div className='maxedout-msg'>Sorry, you're all maxed out on your daily limit of caffeine!</div>) : null
                 }
