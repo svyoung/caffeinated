@@ -92,14 +92,11 @@ class Main extends Component {
                 }
                 <div className={'warning-nan ' + (this.state.warning ? 'warning' : '')}>Please enter a valid quantity number</div>
             </div>
-    );
+        );
     }
 }
 
 export default Main;
-
-/* The if statement is required so as to Render the component on pages that have a div with an ID of "root";
-*/
 
 if (document.getElementById('root')) {
     ReactDOM.render(<Main />, document.getElementById('root'));

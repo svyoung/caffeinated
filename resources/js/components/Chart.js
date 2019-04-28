@@ -13,7 +13,7 @@ class Chart extends Component {
                     You have <strong>{this.props.mg}mg</strong> of caffeine left.
                 </div>
             </div>
-    )
+        )
     }
 }
 
