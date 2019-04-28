@@ -61634,10 +61634,17 @@ function (_Component) {
     value: function render() {
       var _this$props = this.props,
           drinks = _this$props.drinks,
-          selectedDrink = _this$props.selectedDrink;
+          selectedDrink = _this$props.selectedDrink,
+          inventory = _this$props.inventory;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "chart"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Chart"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "inventory"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, inventory.map(function (inv) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: inv.id
+        }, inv.name);
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "content"
       }, "You have ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, this.props.mg, "mg"), " of caffeine left."));
     }
@@ -61776,10 +61783,10 @@ function (_Component) {
       drinks: [],
       maxMg: 500,
       selected: '',
-      qty: '',
       percentage: 100,
       maxedOut: false,
-      disabled: 0
+      disabled: 0,
+      inventory: []
     };
     _this.submitDrink = _this.submitDrink.bind(_assertThisInitialized(_this));
     return _this;
@@ -61806,7 +61813,8 @@ function (_Component) {
     key: "submitDrink",
     value: function submitDrink(drink) {
       var disabled = 0,
-          mg = this.state.maxMg - drink.mg;
+          mg = this.state.maxMg - drink.mg,
+          inv = this.state.inventory.concat(drink);
       this.state.drinks.map(function (drink) {
         if (drink.mg > mg) {
           disabled += 1;
@@ -61822,7 +61830,11 @@ function (_Component) {
       this.setState({
         maxMg: mg,
         disabled: disabled,
-        selected: drink
+        selected: drink,
+        inventory: inv
+      });
+      this.setState({
+        inventory: inv
       });
     }
   }, {
@@ -61845,6 +61857,7 @@ function (_Component) {
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Chart__WEBPACK_IMPORTED_MODULE_3__["default"], {
         mg: this.state.maxMg,
         disabled: this.state.disabled,
+        inventory: this.state.inventory,
         drinks: this.state.drinks,
         selectedDrink: this.state.selected
       }), this.state.maxedOut ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

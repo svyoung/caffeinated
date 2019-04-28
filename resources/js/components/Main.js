@@ -12,10 +12,10 @@ class Main extends Component {
             drinks: [],
             maxMg: 500,
             selected: '',
-            qty: '',
             percentage: 100,
             maxedOut: false,
-            disabled: 0
+            disabled: 0,
+            inventory: []
         };
 
         this.submitDrink = this.submitDrink.bind(this);
@@ -35,7 +35,7 @@ class Main extends Component {
     }
 
     submitDrink(drink) {
-        let disabled = 0, mg = this.state.maxMg - drink.mg;
+        let disabled = 0, mg = this.state.maxMg - drink.mg, inv = this.state.inventory.concat(drink);
         this.state.drinks.map(drink => {
                 if(drink.mg > mg) {
                     disabled += 1;
@@ -45,9 +45,11 @@ class Main extends Component {
         if(disabled === this.state.drinks.length) {
             this.setState({maxedOut: true});
         }
-        this.setState({maxMg: mg, disabled: disabled, selected: drink});
+        this.setState({maxMg: mg, disabled: disabled, selected: drink, inventory: inv});
 
-
+        this.setState({
+            inventory: inv
+        })
     }
     render() {
         const { drinks } = this.state;
@@ -64,6 +66,7 @@ class Main extends Component {
                 </div>
                 <Chart mg={this.state.maxMg}
                     disabled={this.state.disabled}
+                    inventory={this.state.inventory}
                     drinks={this.state.drinks}
                     selectedDrink={this.state.selected} />
                 {(this.state.maxedOut) ?
