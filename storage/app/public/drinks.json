@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "name": "Monster Ultra Sunrise",
+    "mg": 150,
+    "alias": "mus"
+  },
+  {
+    "id": 2,
+    "name": "Black Coffee",
+    "mg": 95,
+    "alias": "bc"
+  },
+  {
+    "id": 3,
+    "name": "Americano",
+    "mg": 77,
+    "alias": "am"
+  },
+  {
+    "id": 4,
+    "name": "Sugar free NOS",
+    "mg": 260,
+    "alias": "sfn"
+  },
+  {
+    "id": 5,
+    "name": "5 Hour Energy",
+    "mg": 200,
+    "alias": "fh"
+  },
+  {
+    "id": 6,
+    "name": "Starbucks Caramel Frappuccino",
+    "mg": 95,
+    "alias": "cf"
+  }
+]
