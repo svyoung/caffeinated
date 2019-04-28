@@ -8,6 +8,7 @@
 
 namespace App\Http\Controllers;
 use DB;
+use Storage;
 
 class CaffeinatedController extends Controller
 {
@@ -16,13 +17,15 @@ class CaffeinatedController extends Controller
     }
 
     function drinks() {
-        $query = DB::table('drinks')
-            ->get();
-        $query = json_decode(json_encode($query), true);
-        $drinks = [];
-        foreach($query as $key => $drink) {
-            $drinks[] = $drink;
-        }
+//        $query = DB::table('drinks')
+//            ->get();
+//        $query = json_decode(json_encode($query), true);
+//        $drinks = [];
+//        foreach($query as $key => $drink) {
+//            $drinks[] = $drink;
+//        }
+        $drinks = Storage::disk('public')->get('drinks.json');
+        $drinks = json_decode($drinks, true);
 
         return response()->json($drinks);
     }
