@@ -18,9 +18,9 @@ class CaffeinatedController extends Controller
 
     function drinks() {
 
-        // This is the code I would use to retrieve data from the database.
-        // However, since it will cost me $400/month to have a working database,
-        // I'll be using a "mock database" with a .json file
+        // This is the code I would use to retrieve data from MySQL.
+        // However, since it will cost me $400/month to have a working DB hosted in Azure,
+        // I'll be using a "mock database" with a .json file instead
 
         /**
         $query = DB::table('drinks')
