@@ -61764,7 +61764,6 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-/* An example React component */
 
 var Main =
 /*#__PURE__*/

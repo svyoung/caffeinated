@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import Drink from './Drink';
 import Chart from './Chart';
 
-/* An example React component */
 class Main extends Component {
     constructor(props) {
         super(props);
