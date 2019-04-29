@@ -9,7 +9,7 @@ class Drink extends Component {
                 <h2>{drinkData.name}</h2>
                 <h3>{drinkData.mg}mg</h3>
                 <div className='qty'><label>Qty: </label> <input type='text' pattern='[1-9]*' data-alias={drinkData.alias} value={this.props.qty} onChange={(e) => this.props.onChange(e, drinkData.id)} /></div>
-                <button type='button' onClick={() => this.props.submitDrink(drinkData)} disabled={(this.props.mg < drinkData.mg ? true : false )}>Select Drink</button>
+                <button type='button' onClick={this.props.submitDrink.bind(this, drinkData)} disabled={(this.props.mg < drinkData.mg ? true : false )}>Select Drink</button>
             </article>
         )
     }

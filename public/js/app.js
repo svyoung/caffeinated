@@ -61714,9 +61714,7 @@ function (_Component) {
         }
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "button",
-        onClick: function onClick() {
-          return _this.props.submitDrink(drinkData);
-        },
+        onClick: this.props.submitDrink.bind(this, drinkData),
         disabled: this.props.mg < drinkData.mg ? true : false
       }, "Select Drink"));
     }
@@ -61807,6 +61805,8 @@ function (_Component) {
         that.setState({
           drinks: data
         });
+      })["catch"](function (err) {
+        return console.log('Error: ' + err.message);
       });
     }
   }, {
@@ -61820,16 +61820,9 @@ function (_Component) {
           disabled += 1;
         }
       });
-
-      if (disabled === this.state.drinks.length) {
-        this.setState({
-          maxedOut: true
-        });
-      }
-
-      if (mg < 0) mg = 0;
       this.setState({
-        maxMg: mg,
+        maxedOut: disabled === this.state.drinks.length,
+        maxMg: mg < 0 ? 0 : mg,
         disabled: disabled,
         selected: drink
       });
@@ -61839,7 +61832,7 @@ function (_Component) {
     value: function onQty(e, id) {
       var _this2 = this;
 
-      if (isNaN(e.target.value)) {
+      if (Number.isNaN(parseInt(e.target.value))) {
         this.setState({
           warning: true
         });

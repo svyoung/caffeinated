@@ -31,6 +31,7 @@ class Main extends Component {
         })
             .then(response => response.json())
             .then(data => {that.setState( { drinks: data });})
+            .catch((err) => console.log('Error: ' + err.message));
     }
 
     submitDrink(drink) {
@@ -42,17 +43,17 @@ class Main extends Component {
                 if(drink.mg > mg) {
                     disabled += 1;
                 }
-            }
-        );
-        if(disabled === this.state.drinks.length) {
-            this.setState({maxedOut: true});
-        }
-        if(mg < 0 ) mg = 0;
-        this.setState({maxMg: mg, disabled: disabled, selected: drink});
+            });
+        this.setState({
+            maxedOut: disabled === this.state.drinks.length,
+            maxMg: (mg < 0) ? 0 : mg,
+            disabled: disabled,
+            selected: drink
+        });
     }
 
     onQty(e, id) {
-        if(isNaN(e.target.value)) {
+        if(Number.isNaN(parseInt(e.target.value))) {
             this.setState({warning:true});
             setTimeout(() => {
                 this.setState({
