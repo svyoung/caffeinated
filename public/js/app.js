@@ -61793,7 +61793,8 @@ function (_Component) {
   _createClass(Main, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var that = this;
+      var _this2 = this;
+
       fetch('/drinks', {
         headers: {
           'Content-Type': 'application/json',
@@ -61802,7 +61803,7 @@ function (_Component) {
       }).then(function (response) {
         return response.json();
       }).then(function (data) {
-        that.setState({
+        _this2.setState({
           drinks: data
         });
       })["catch"](function (err) {
@@ -61830,14 +61831,14 @@ function (_Component) {
   }, {
     key: "onQty",
     value: function onQty(e, id) {
-      var _this2 = this;
+      var _this3 = this;
 
       if (Number.isNaN(parseInt(e.target.value))) {
         this.setState({
           warning: true
         });
         setTimeout(function () {
-          _this2.setState({
+          _this3.setState({
             warning: false
           });
         }, 2000);
@@ -61852,7 +61853,7 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       var drinks = this.state.drinks;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -61862,11 +61863,11 @@ function (_Component) {
       }, drinks.map(function (drink) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Drink__WEBPACK_IMPORTED_MODULE_2__["default"], {
           key: drink.id,
-          mg: _this3.state.maxMg,
+          mg: _this4.state.maxMg,
           drinkData: drink,
-          onChange: _this3.onQty,
-          submitDrink: _this3.submitDrink,
-          qty: _this3.state.qty[drink.id - 1]
+          onChange: _this4.onQty,
+          submitDrink: _this4.submitDrink,
+          qty: _this4.state.qty[drink.id - 1]
         });
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Chart__WEBPACK_IMPORTED_MODULE_3__["default"], {
         mg: this.state.maxMg

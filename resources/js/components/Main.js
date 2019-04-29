@@ -22,7 +22,6 @@ class Main extends Component {
     }
 
     componentDidMount() {
-        let that = this;
         fetch('/drinks', {
             headers : {
                 'Content-Type': 'application/json',
@@ -30,7 +29,7 @@ class Main extends Component {
             }
         })
             .then(response => response.json())
-            .then(data => {that.setState( { drinks: data });})
+            .then(data => {this.setState( { drinks: data });})
             .catch((err) => console.log('Error: ' + err.message));
     }
 
