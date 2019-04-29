@@ -20,7 +20,8 @@ class CaffeinatedController extends Controller
 
         // This is the code I would use to retrieve data from MySQL.
         // However, since it will cost me $400/month to have a working DB hosted in Azure,
-        // I'll be using a "mock database" with a .json file instead
+        // I'll be using a "mock database" with a .json file instead.
+        // I've included the .sql schema file in the root folder of this project
 
         /**
         $query = DB::table('drinks')

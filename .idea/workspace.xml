@@ -57,8 +57,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CaffeinatedController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="22" column="68" selection-start-line="22" selection-start-column="68" selection-end-line="22" selection-end-column="68" />
+            <state relative-caret-position="255">
+              <caret line="23" column="80" selection-start-line="23" selection-start-column="80" selection-end-line="23" selection-end-column="80" />
               <folding>
                 <element signature="e#126#133#0#PHP" expanded="true" />
               </folding>
@@ -362,12 +362,12 @@
       <workItem from="1556078603768" duration="1630000" />
       <workItem from="1556308590436" duration="13211000" />
       <workItem from="1556333822695" duration="20882000" />
-      <workItem from="1556479759285" duration="10461000" />
+      <workItem from="1556479759285" duration="10627000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="47189000" />
+    <option name="totallyTimeSpent" value="47355000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -584,8 +584,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CaffeinatedController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="22" column="68" selection-start-line="22" selection-start-column="68" selection-end-line="22" selection-end-column="68" />
+        <state relative-caret-position="255">
+          <caret line="23" column="80" selection-start-line="23" selection-start-column="80" selection-end-line="23" selection-end-column="80" />
           <folding>
             <element signature="e#126#133#0#PHP" expanded="true" />
           </folding>
