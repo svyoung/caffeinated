@@ -18,7 +18,7 @@
 <script src="{{mix('js/app.js')}}" ></script>
 <script src="{{asset('js/jquery-ui.min.js')}}" ></script>
 <script>
-        $( "#chart" ).draggable({
+        $( "#status" ).draggable({
             handle: 'h1'
         });
 </script>
