@@ -61633,8 +61633,8 @@ function (_Component) {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "chart"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Chart"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "status"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Status"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "content"
       }, "You have ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, this.props.mg, "mg"), " of caffeine left."));
     }
