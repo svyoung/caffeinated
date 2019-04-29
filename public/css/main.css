@@ -95,7 +95,7 @@ article:hover {
 article.disabled {
     cursor: not-allowed;
     opacity: .3;
-    border: 1px solid red;
+    border:1px solid red;
 }
 article .drink-image {
     width: 130px;
