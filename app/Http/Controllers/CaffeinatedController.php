@@ -17,13 +17,23 @@ class CaffeinatedController extends Controller
     }
 
     function drinks() {
-//        $query = DB::table('drinks')
-//            ->get();
-//        $query = json_decode(json_encode($query), true);
-//        $drinks = [];
-//        foreach($query as $key => $drink) {
-//            $drinks[] = $drink;
-//        }
+
+        // This is the code I would use to retrieve data from the database.
+        // However, since it will cost me $400/month to have a working database,
+        // I'll be using a "mock database" with a .json file
+
+        /**
+        $query = DB::table('drinks')
+            ->get();
+        $query = json_decode(json_encode($query), true);
+        $drinks = [];
+        foreach($query as $key => $drink) {
+            $drinks[] = $drink;
+        }
+         *
+         */
+
+        // Here is the mock database .json file
         $drinks = Storage::disk('public')->get('drinks.json');
         $drinks = json_decode($drinks, true);
 
