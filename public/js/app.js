@@ -61823,8 +61823,7 @@ function (_Component) {
       this.setState({
         maxedOut: disabled === this.state.drinks.length,
         maxMg: mg < 0 ? 0 : mg,
-        disabled: disabled,
-        selected: drink
+        disabled: disabled
       });
     }
   }, {
