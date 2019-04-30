@@ -55,7 +55,7 @@
 body {
     background: #ffffff;
 }
-#root {
+#root, .menu {
     overflow: hidden;
 }
 h2.welcome {
@@ -83,6 +83,7 @@ h2.welcome {
     background:#fff;
     padding:0 10px;
 }
+
 article {
     display: inline-block;
     text-align: center;
@@ -95,14 +96,22 @@ article {
     transition: all 0.3s ease;
     opacity: .8;
 }
-@media (max-width: 770px) {
+@media (max-width: 990px) {
     article {
         width: 47%;
     }
 }
+@media (max-width: 767px) {
+    article {
+        width: 46%;
+    }
+}
 @media (max-width: 567px) {
     article {
-        width: 100%;
+        width: 95%;
+        display: block;
+        padding: 20px 0;
+        margin: 10px auto;
     }
 }
 article:hover {
