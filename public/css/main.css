@@ -55,9 +55,19 @@
 body {
     background: #ffffff;
 }
+#root {
+    overflow: hidden;
+}
 h2.welcome {
-    margin: 20px auto;
+    margin: 20px
+    auto;
     text-align: center;
+}
+@media (max-width: 576px) {
+    .container {
+        max-width: 100%;
+        margin-bottom: 100px;
+    }
 }
 .container > h1 {
     width: 100%;
@@ -84,6 +94,16 @@ article {
     cursor: pointer;
     transition: all 0.3s ease;
     opacity: .8;
+}
+@media (max-width: 770px) {
+    article {
+        width: 47%;
+    }
+}
+@media (max-width: 567px) {
+    article {
+        width: 100%;
+    }
 }
 article:hover {
     -webkit-animation: swing 1s ease;
@@ -191,6 +211,17 @@ article.disabled button {
     border: 3px solid #d2d2d2;
     width: 300px;
     box-shadow: 0 1px 6px #6b6b6b;
+}
+@media (max-width: 567px) {
+    #status {
+        bottom: 0;
+        top: unset;
+        left: 0;
+        right: unset;
+        width: 100%;
+        box-shadow: none;
+        border: 0;
+    }
 }
 #status h1 {
     padding: 5px 10px;
