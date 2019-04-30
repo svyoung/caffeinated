@@ -61831,7 +61831,7 @@ function (_Component) {
     value: function onQty(e, id) {
       var _this3 = this;
 
-      if (Number.isNaN(parseInt(e.target.value))) {
+      if (isNaN(e.target.value)) {
         this.setState({
           warning: true
         });

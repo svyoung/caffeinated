@@ -50,7 +50,7 @@ class Main extends Component {
     }
 
     onQty(e, id) {
-        if(Number.isNaN(parseInt(e.target.value))) {
+        if(isNaN(e.target.value)) {
             this.setState({warning:true});
             setTimeout(() => {
                 this.setState({
